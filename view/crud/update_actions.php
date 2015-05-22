@@ -14,8 +14,13 @@ if (!(isset($data['alldata']['hidden_sections']['backbutton']) && ($data['alldat
     foreach ($data['alldata']['url_parameters'] as $key => $val) {
         $href = $ns->add_param($href, $key, $val, 1);
     }
+$is_iframe_class = 'not-an-iframe';
+if ($request->get('int', 'is_iframe')) {
+    $is_iframe_class = 'is-an-iframe';
+}
+
 ?>
-<a class="clementine_crud-backbutton clementine_crud-<?php echo $formtype; ?>-backbutton backbutton <?php echo implode(' ', $data['alldata']['more_classes_backbutton']); ?>"
+<a class="clementine_crud-backbutton <?php echo $is_iframe_class; ?> clementine_crud-<?php echo $formtype; ?>-backbutton backbutton <?php echo implode(' ', $data['alldata']['more_classes_backbutton']); ?>"
     href="<?php echo $href; ?>"
     title="<?php echo $button_label; ?>">
     <i class="glyphicon glyphicon-arrow-left"></i><span class="text-hide"><?php echo $button_label; ?></span>
